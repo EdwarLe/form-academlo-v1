@@ -25,3 +25,7 @@ function getUserList () {
 function localStorageUserList (pList) {
     localStorage.setItem("localUserList", JSON.stringify(pList))
 }
+
+function deleteList() {
+    localStorage.removeItem("localUserList")
+  }

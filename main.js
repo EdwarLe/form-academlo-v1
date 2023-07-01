@@ -33,8 +33,6 @@
 //                     <p>Password: ${userPass}</p>
 //                     </div>`);
 
-  
-
 // localStorage.setItem("perfil", JSON.stringify(users))
 // console.log(users)
 
@@ -47,32 +45,58 @@
 
 // console.log(perfil);
 
-document.querySelector("#btnSend").addEventListener("click", saveUser)
-printUsers ()
+document.querySelector("#btnSend").addEventListener("click", saveUser);
+document.querySelector("#cleanBtn").addEventListener("click", deleteList)
+printUsers();
 
 function saveUser(event) {
-  const userForm = document.querySelector(".userForm")
-event.preventDefault()
+  const userForm = document.querySelector(".userForm");
+
+  event.preventDefault();
+
   let sName = document.querySelector("#userName").value.trim().toLowerCase();
-      sMail = document.querySelector("#userMail").value.trim().toLowerCase();
-      sPass = document.querySelector("#userPass").value;
-      sConfPass = document.querySelector("#userConfPass").value;
-  addUserToSystem(sName, sMail, sPass, sConfPass)
-  printUsers ()
-  userForm.reset()
+  let sMail = document.querySelector("#userMail").value.trim().toLowerCase();
+  let sPass = document.querySelector("#userPass").value;
+  let sConfPass = document.querySelector("#userConfPass").value;
+
+  if (!sName || !sMail || !sPass || !sConfPass)
+    return Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      footer: "<h2>Please fill all the fields</h2>",
+    });
+
+  if (sPass !== sConfPass)
+    return Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!",
+      footer: "<h2>Passwords do not match</h2>",
+    });
+
+
+  addUserToSystem(sName, sMail, sPass, sConfPass);
+  printUsers();
+  userForm.reset();
 }
 
-function printUsers () {
+function printUsers() {
   let listUser = getUserList();
   let list = document.querySelector(".list");
 
-  list.innerHTML = ""
+  list.innerHTML = "";
 
-  for(let i = 0; i < listUser.length; i++) {
+  for (let i = 0; i < listUser.length; i++) {
     list.innerHTML += `<div class="list__user">
-                         <h3>Name: ${listUser[i].name}</h3>
-                         <p>Email: ${listUser[i].email}</p>
-                         <p>Password: ${listUser[i].password}</p>
-                         </div>`
+                        <h3>Name: ${listUser[i].name}</h3>
+                        <p>Email: ${listUser[i].email}</p>
+                        <p>Password: ${listUser[i].password}</p>
+                        <div class="del">
+                        <p>X</p>
+                        </div>
+                         </div>`;
   }
 }
+
+
