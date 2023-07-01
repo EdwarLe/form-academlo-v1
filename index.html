@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Formulario Academlo</title>
+</head>
+
+<body>
+    <div class="main__container">
+        <div class="container">
+            <form class="userForm">
+                <div class="items">
+                    <label for="userName">Name</label>
+                    <input type="text" name="userName" id="userName">
+                </div>
+
+                <div class="items">
+                    <label for="userMail">Email</label>
+                    <input type="email" name="userMail" id="userMail">
+                </div>
+                
+                <div class="items">
+                    <label for="userPass">Password</label>
+                    <input type="password" name="userPass" id="userPass">
+                </div>
+
+                <div class="items">
+                    <label for="userConfPass">Confirm Password</label>
+                    <input type="password" name="userConfPass" id="userConfPass">
+                </div>
+
+                <div>
+                    <input type="submit" name="btnSend" id="btnSend" value="send">
+                </div>
+            </form>
+            <div class="list"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
